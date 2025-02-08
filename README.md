@@ -223,10 +223,10 @@ Provide order book information about bid and ask orders for requested symbol.
 {
 	status: "OK",
 	data: {
-		timestamp: 1738938616491,	//Datetime
-    ticker_id: "BTC/USD-PERP",	
-		bids: [						//Array of bids
-            [99490, 0.574],			//A price (in quote currency), size (in base asset)
+timestamp: 1738938616491,		//Datetime
+ticker_id: "BTC/USD-PERP",	
+bids: [		//Array of bids
+            [99490, 0.574],		//A price (in quote currency), size (in base asset)
             [99489.9, 0.001],
             [99489.6, 0.002],
             [99489.1, 0.114],
@@ -240,8 +240,8 @@ Provide order book information about bid and ask orders for requested symbol.
             [95626.6, 0.001],
             [95626.4, 0.009],
             [95626, 0.342]
-		],
-		asks: [
+	],
+	asks: [
             [99490.1, 8.145],
             [99490.2, 0.114],
             [99491.3, 0.338],
@@ -262,7 +262,7 @@ Provide order book information about bid and ask orders for requested symbol.
             [99975.4, 3.266],
             [99975.7, 0.013],
             [99975.8, 0.013]
-		]
+	]
 	}
 }
 ```
