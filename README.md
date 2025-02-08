@@ -290,8 +290,8 @@ Provide a k-line data for a chart (TradingView-compatability)
 {
 	status: "OK",
 	data: {
-		s: "ok",					  //Status
-		t: [						    //Times
+	s: "ok",	//Status
+	t: [		//Times
             1739009353,
             1739009533,
             1739009713,
@@ -299,7 +299,7 @@ Provide a k-line data for a chart (TradingView-compatability)
             1739010073,
             1739010253
         ],
-		c: [						    //Close prices
+	c: [		//Close prices
             96158.6,
             96167.89,
             96138.51,
@@ -307,7 +307,7 @@ Provide a k-line data for a chart (TradingView-compatability)
             96196.3,
             96216.4
         ],
-		o: [						    //Open prices
+	o: [		//Open prices
             96091.88,
             96158.5,
             96167.87,
@@ -315,7 +315,7 @@ Provide a k-line data for a chart (TradingView-compatability)
             96163.71,
             96196.3
         ],
-		h: [						  //Hight prices
+	h: [		//Hight prices
             96158.6,
             96185.4,
             96189.7,
@@ -323,7 +323,7 @@ Provide a k-line data for a chart (TradingView-compatability)
             96197.6,
             96228.52
         ],
-		l: [						  //Low prices
+	l: [		//Low prices
             96091.88,
             96158.5,
             96138.51,
@@ -331,7 +331,7 @@ Provide a k-line data for a chart (TradingView-compatability)
             96155.62,
             96196.2
         ],
-		v: [ ]					  //Volumes (optional, not populated now)
+	v: [ ]		//Volumes (optional, not populated now)
 	}
 }
 ```
