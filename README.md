@@ -10,17 +10,17 @@
 
 #### **Testnet**: https://api.testnet.biqutex.dev/ 
 
-  **Note**: API may temporary unavailable due to upgrade period
+  **Note**: API may be temporarily unavailable due to upgrade period
 
   **Note**: HTTP 1.1 and HTTP 2.0 protocols are supported, TLS 1.2+ only, IPv4 only
 
-  **Rate limits**: 2 req. per second per IP are allowed
+  **Rate limits**: 2 requests per second per IP are allowed
 
   **Content-type**: application/json; charset=utf8
 
 #### **Production**: https://api.biqutex.com
 
-​	**Note**: Using a Cloudflare for api domain access
+​	**Note**: Use a Cloudflare for api domain access
 
 ​	**Note**: HTTP 1.1, 2.0 and HTTP 3.0/QUICK protocols are supported, TLS 1.2+, IPv4/v6 support
 
@@ -36,13 +36,13 @@
 
 ## /api/v1/heartbeat
 
-Check availability of Biqutex server-side
+Check Biqutex availability server-side
 
 #### **Params**
 
 ​	none
 
-#### **Responce**
+#### **Response**
 
 ```javascript
 {
@@ -66,13 +66,13 @@ or
 
 ## /api/v1/time
 
-Obtain a Biqutex server time (for sync etc.)
+Get a Biqutex server time (for sync etc.)
 
 #### **Params**
 
 ​	none
 
-#### **Responce**
+#### **Response**
 
 ```javascript
 {
@@ -93,18 +93,18 @@ Obtain a Biqutex server time (for sync etc.)
 
 ## /api/v1/contracts
 
-Overview market and traded contracts information
+Overview of market and traded contracts information
 
 #### **Params**
 
-- **symbol** - a symbol name or list of symbols with comma separator, e.g.: *BTC/USD-PERP* or *BTC/USD-PERP,ETH/USD-PERP*
-- **base** - base asset symbol, e.g.: BTC *or* *ETH*
-- **quote** - a quote currency symbol, e.g.: *USD*. Currently, only USD (default) are supported.
-- **type** - a contract type. Currently only "*futures_perpetual*" are supported.
+- **symbol** - a symbol name or list of symbols separated by commas, e.g: *BTC/USD-PERP* or *BTC/USD-PERP,ETH/USD-PERP*
+- **base** - base asset symbol, for example: BTC *or* *ETH*
+- **quote** - a quote currency symbol, for example *USD*. Currently, only USD (default) is supported.
+- **type** - a contract type. Currently only "*futures_perpetual*" is supported.
 
-Request without any params return ALL traded data OR use any combination of them.
+Request without any parameters will return ALL traded data OR use any combination of them.
 
-#### Responce
+#### Response
 
 ```javascript
 {
@@ -124,8 +124,8 @@ Request without any params return ALL traded data OR use any combination of them
             high: 98999.95,    //24h higest price
             low: 95631.85,    //24h lowest price
             product_type: "futures_perpetual",    //Product type
-            open_interest: 32.371,    //Open Interest in base asset
-            open_interest_usd: 3166157,    //Open Interest in quote asset
+            open_interest: 32.371,    //Open Interest in underlying asset
+            open_interest_usd: 3166157,    //Open Interest in the quoted asset
             index_price: 97808.44,		//Last markPrice
             index_name: ".BTC/USD",		//Index price symbol code
             index_currency: "USD",    //Index price currency
@@ -134,8 +134,8 @@ Request without any params return ALL traded data OR use any combination of them
             funding_rate: 0.003448,    //Current funding rate (in %)
             next_funding_rate: 0.003423,    //Predicted funding rate
             next_funding_rate_timestamp: 1738944000000,	//Next funding rate timestamp
-            maker_fee: 0.02,    //A base commision's fee (as maker), in %
-            taker_fee: 0.055,    //A base commision's fee (as taker), in %
+            maker_fee: 0.02,    //A base commission fee (as maker), in %
+            taker_fee: 0.055,    //A base commission fee (as taker), in %
             status: "active"    //Trading status of a contract
         },
         ETH/USD-PERP: {
@@ -157,14 +157,14 @@ Request without any params return ALL traded data OR use any combination of them
 
 ## /api/v1/trades
 
-A list of last trades over a Biqutex exchange active markets.
+A list of recent trades on an active Biqutex exchange.
 
 #### **Params**
 
 - **symbol** - contract symbol, e.g.: BTC/USD-PERP. **REQUIRED!**
-- **limit** - how many of latest trade select for a responce. **Default**: 100 (max 250)
+- **limit** - how many of the last trade to select for a response. **Default**: 100 (max 250)
 
-#### **Responce**
+#### **Response**
 
 ```javascript
 {
@@ -172,12 +172,12 @@ A list of last trades over a Biqutex exchange active markets.
 	data: {
 		BNB/USD-PERP: [
             {
-                trade_id: 828562075,	//Global uniq trade id
+                trade_id: 828562075,	//Global unique trade id
                 price: 584.5,			//Price (in a quote currency)
                 base_volume: 0.01,		//Volume (in a base currency)
                 target_volume: 584,		//Notion volume (in quote currency)
                 trade_timestamp: 1738932495637,	//Unix timestamp
-                type: "BUY",			//Direction of trade
+                type: "BUY",			//Direction of the trade
                 liquidation: false		//Liquidation flag
             },
             {
@@ -211,13 +211,13 @@ A list of last trades over a Biqutex exchange active markets.
 
 ## /api/v1/orderbook
 
-Provide order book information about bid and ask orders for requested symbol.
+Retrieve order book information about bid and ask orders for requested symbol.
 
 #### Params
 
 - **symbol** - contract symbol, e.g.: BTC/USD-PERP. **REQUIRED!**
 
-#### Responce
+#### Response
 
 ```javascript
 {
@@ -275,14 +275,14 @@ Provide order book information about bid and ask orders for requested symbol.
 
 ## /api/v1/ohlc
 
-Provide a k-line data for a chart (TradingView-compatability)
+Provide a k-line data for a chart (TradingView compatibility)
 
 #### Params
 
 - **symbol** - contract symbol, e.g.: BTC/USD-PERP. **REQUIRED!**
 - **resolution** - timeframe for k-line. Possible: digits 1,3,5,10,15,30,60 - as minutes OR {N}h (hour), {N}D (days), {N}W (week) or {N}M (month).
-- **limits** - an max 1000 points, default: 300
-- **indextype** - a type of data: "markprice", "spotprice" or "fundingrate" as possible. Defaults are markprice.
+- **limits** - a maximum of 1000 points, default: 300
+- **indextype** - a type of data: "markprice", "spotprice" or "fundingrate" as possible. Defaults is markprice.
 
 #### Reponce
 
